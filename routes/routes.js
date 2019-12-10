@@ -3,7 +3,6 @@ const Workout = require("../models/workoutModel")
 module.exports = function (app) {
     app.get("/", (req, res) => {
         Workout.find({}).then(data => {
-            console.log({ data })
             res.render("index", { data })
         })
     })
@@ -27,7 +26,16 @@ module.exports = function (app) {
     app.post("/postWorkout", (req, res) => {
         Workout.create(req.body)
             .then(() => {
-                console.log("worked")
+                res.render("/")
+            })
+    })
+
+    app.get("/viewWorkout/:id", (req, res) => {
+        console.log(req.params.id)
+        Workout.findOne({ _id: req.params.id })
+            .then(result => {
+                console.log(result)
+                res.render("viewWorkout", { result })
             })
     })
 };

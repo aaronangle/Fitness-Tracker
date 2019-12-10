@@ -1,5 +1,3 @@
-import { set } from "mongoose";
-
 const addWorkout = document.querySelector("#addWorkout");
 const cardio = document.querySelector("#cardio");
 const resistance = document.querySelector("#resistance");
@@ -11,6 +9,7 @@ const sets = document.querySelector("#sets");
 const reps = document.querySelector("#reps");
 const workout = document.querySelector("#workout")
 const add = document.querySelector("#add")
+const viewWorkout = document.querySelectorAll(".viewWorkout")
 
 if (addWorkout) {
     addWorkout.addEventListener("click", function (event) {
@@ -20,6 +19,18 @@ if (addWorkout) {
             method: "GET"
         }).then(() => {
             window.location.assign("/workout")
+        })
+    })
+    viewWorkout.forEach(element => {
+        element.addEventListener("click", function (event) {
+            event.preventDefault();
+            const id = this.getAttribute("data-id")
+            fetch("/viewWorkout/" + id, {
+                method: "GET"
+            }).then((data) => {
+                console.log(data)
+                window.location.assign("/viewWorkout/" + id)
+            })
         })
     })
 }
@@ -55,23 +66,22 @@ if (submit) {
                 length: length.value,
                 calories: calories.value
             })
-            length.innerText = "";
-            calories.innerText = "";
+            length.value = "";
+            calories.value = "";
         } else {
             workoutData.push({
                 workoutName: workoutName.value,
                 reps: reps.value,
                 sets: sets.value
             })
-            reps.innerText = "";
-            sets.innerText = "";
+            reps.value = "";
+            sets.value = "";
         }
-
-    })
+        workoutName.value = "";
+    });
 
     submit.addEventListener("click", function (event) {
         event.preventDefault();
-        console.log(workoutName.value)
         let data;
         if (length) {
             data = {
@@ -86,13 +96,16 @@ if (submit) {
                 data: workoutData
             }
         }
-        console.log(data)
         fetch("/postWorkout", {
             method: "POST",
-            headers: { 'content-type': 'application/json' },
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(data)
         }).then(res => {
             console.log(res)
+            window.location.assign("/")
         })
-    })
+    });
 }

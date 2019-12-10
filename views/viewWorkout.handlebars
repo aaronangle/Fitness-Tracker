@@ -1,0 +1,22 @@
+<div class="container-fluid wrapper">
+    <div class="row">
+        <div class="col-3"></div>
+        <h2>{{result.workout}}</h2>
+
+    </div>
+    <div class="row">
+        <div class="col-3"></div>
+        {{#each result.data}}
+        <div class="card mx-1" style="width: 18rem;">
+            <h5 class="card-header">{{workoutName}}</h5>
+            <div class="card-body">
+                <p class="card-text">Reps: {{reps}}</p>
+                <p class="card-text">Sets: {{sets}}</p>
+
+            </div>
+        </div>
+        {{/each}}
+        <div class="col-3"></div>
+    </div>
+
+</div>

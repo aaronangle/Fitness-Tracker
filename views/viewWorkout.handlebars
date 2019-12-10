@@ -10,13 +10,15 @@
         <div class="card mx-1" style="width: 18rem;">
             <h5 class="card-header">{{workoutName}}</h5>
             <div class="card-body">
-                <p class="card-text">Reps: {{reps}}</p>
-                <p class="card-text">Sets: {{sets}}</p>
-
+                <p class="card-text">Reps: <span id="repNumber">{{reps}}</span></p>
+                <p class="card-text">Sets: <span id="setNumber">{{sets}}</span></p>
+                <button class="btn btn-primary visualize" data-id={{_id}}>Visualize the Data</button>
             </div>
         </div>
         {{/each}}
         <div class="col-3"></div>
     </div>
-
+    <div class="row">
+        <canvas id="myChart"></canvas>
+    </div>
 </div>

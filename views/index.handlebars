@@ -1,0 +1,31 @@
+<div class="container-fluid wrapper">
+    <br>
+    <br>
+    <br>
+    <div class="row center">
+        <div class="col-2 sidenav">
+            {{#if data}}
+            <h3>View your Workouts</h3>
+            {{#each data}}
+            <h3>{{workoutName}}</h3>
+            {{/each}}
+            {{/if}}
+        </div>
+        <div class="col-1"></div>
+        <div class="col-6">
+            <div class="card text-center">
+                <div class="card-header">
+
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Track your Workouts</h5>
+                    <p class="card-text">Track the workouts you do by adding a new workout</p>
+                    <a href="#" id="addWorkout" class="btn btn-primary">Add Workout</a>
+                </div>
+                <div class="card-footer text-muted">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

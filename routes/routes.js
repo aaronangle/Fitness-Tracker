@@ -34,8 +34,9 @@ module.exports = function (app) {
     })
 
     app.get("/search/:name", (req, res) => {
-        Workout.findOne({ workout: req.params.name })
+        Workout.findOne({ workout: { $regex: new RegExp(req.params.name) } })
             .then(result => {
+                console.log(result)
                 res.render("viewWorkout", { result })
             })
     })

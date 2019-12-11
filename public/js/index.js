@@ -26,7 +26,8 @@ let workoutData = [];
 
 submitSearch.addEventListener("click", function (event) {
     event.preventDefault();
-    const name = searchInput.value.trim()
+    let name = searchInput.value.trim()
+    name = name.split(" ")[0];
     fetch("/search/" + name, {
         method: "GET"
     }).then(() => {
@@ -140,6 +141,7 @@ if (submit) {
             pushData();
         }
         let data;
+
         if (length) {
             data = {
                 workout: workout.value,

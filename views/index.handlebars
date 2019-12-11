@@ -3,25 +3,28 @@
     <br>
     <br>
     <div class="row center">
-        <div class="col-4 col-lg-3 sidenav">
-            {{#if data}}
-            <h3 class="text-center">Your Workouts</h3>
-            <hr>
-            {{#each data}}
-            <button type="button" class="btn btn-outline-primary btn-lg btn-block viewWorkout"
-                data-id={{_id}}>{{workout}}</button>
-            {{/each}}
-            {{/if}}
+        <div class="col-6 col-lg-3">
+            <div class="sidenav">
+                {{#if data}}
+                <h3 class="text-center bold">Your Workouts</h3>
+                <hr>
+                {{#each data}}
+                <button type="button" class="btn btn-outline-dark btn-lg btn-block  font-weight-bold viewWorkout"
+                    data-id={{_id}}>{{workout}}</button>
+                {{/each}}
+                {{/if}}
+            </div>
         </div>
-        <div class="col-8 col-lg-6">
+        <div class="col-6 col-lg-6">
             <div class="card text-center">
                 <div class="card-header">
 
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Track your Workouts</h5>
-                    <p class="card-text">Track the workouts you do by adding a new workout</p>
-                    <a href="#" id="addWorkout" class="btn btn-primary">Add Workout</a>
+                    <p class="card-text">Add a new Workout Session along with all the excercises to keep track of your
+                        Fitness Schedule</p>
+                    <button id="addWorkout" class="btn btn-dark">Add Workout</button>
                 </div>
                 <div class="card-footer text-muted">
 

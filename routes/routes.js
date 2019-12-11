@@ -27,8 +27,14 @@ module.exports = function (app) {
     })
 
     app.get("/viewWorkout/:id", (req, res) => {
-        console.log(req.params.id)
         Workout.findOne({ _id: req.params.id })
+            .then(result => {
+                res.render("viewWorkout", { result })
+            })
+    })
+
+    app.get("/search/:name", (req, res) => {
+        Workout.findOne({ workout: req.params.name })
             .then(result => {
                 console.log(result)
                 res.render("viewWorkout", { result })

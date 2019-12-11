@@ -18,7 +18,19 @@ const setNumber = document.querySelectorAll(".setNumber")
 const lengthNumber = document.querySelector(".lengthNumber")
 const weightNumber = document.querySelectorAll(".weightNumber")
 const workoutTitle = document.querySelectorAll(".workoutTitle")
+const submitSearch = document.querySelector("#submitSearch")
+const searchInput = document.querySelector("#searchInput")
 let workoutData = [];
+
+submitSearch.addEventListener("click", function (event) {
+    event.preventDefault();
+    const name = searchInput.value.trim()
+    fetch("/search/" + name, {
+        method: "GET"
+    }).then(() => {
+        window.location.assign("/search/" + name)
+    })
+})
 
 if (addWorkout) {
     addWorkout.addEventListener("click", function (event) {
@@ -176,15 +188,15 @@ if (visualize) {
                         datasets: [{
                             label: label1,
                             data: repData,
-                            backgroundColor: 'rgb(255, 99, 132)'
+                            backgroundColor: 'lightgray'
                         }, {
                             label: label2,
                             data: setData,
-                            backgroundColor: 'yellow'
+                            backgroundColor: 'gray'
                         }, {
                             label: label3,
                             data: weightData,
-                            backgroundColor: "blue"
+                            backgroundColor: "black"
                         }]
                     },
 

@@ -1,4 +1,8 @@
-<div class="container-fluid wrapper">
+{{#if result}}
+<div class="container wrapper">
+    <br>
+    <br>
+    <br>
     <div class="row">
 
         <div class="col-0 col-lg-2"></div>
@@ -7,11 +11,11 @@
         </div>
         <div class="col-0 col-lg-3"></div>
         <div class="col-lg-4">
-            <button class="btn btn-primary visualize">Visualize the Data</button>
+            <button class="btn btn-dark visualize">Visualize the Data</button>
         </div>
     </div>
     <div class="row center">
-        <div class="col-lg-2 col-0"></div>
+
 
         {{#each result.data}}
         <div class="col-lg-2 col-6">
@@ -32,7 +36,7 @@
         </div>
         {{/each}}
 
-        <div class="col-lg-2 col-0"></div>
+
     </div>
     <div class="row">
         <div class="col-lg-2 col-0"></div>
@@ -42,3 +46,29 @@
         <div class="col-lg-2 col-0"></div>
     </div>
 </div>
+{{else}}
+<div class="container-fluid wrapper">
+    <br>
+    <br>
+    <br>
+    <div class="row center">
+        <div class="col-2"></div>
+        <div class="col-1"></div>
+        <div class="col-6">
+
+            <div class="card text-center">
+                <div class="card-header">
+
+                </div>
+                <div class="card-body">
+                    <h5>Sorry We Couldn't Find a Search for That</h5>
+                    <button class="btn btn-dark"> <a href="/">Go Back Home</a> </button>
+                </div>
+                <div class="card-footer text-muted">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}

@@ -1,4 +1,28 @@
-/* #myChart{
-    height: 100px !important;
-    width: 100px !important;
-} */
+html, body{
+    max-height: 100vh !important;
+}
+.sidenav{
+    height: 500px;
+    width: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+.sidenav::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  /* Track */
+  .sidenav::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  .sidenav::-webkit-scrollbar-thumb {
+    background: #b5b5b6; 
+    border-radius: 10px;
+  }
+  a{
+      text-decoration: none;
+      color: inherit;
+  }

@@ -8,12 +8,20 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles/style.css">
+    <link rel='shortcut icon' type='image/x-icon' href='/images/arms.jpg' />
     <title>Fitness Tracker</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="/">Fitness-Tracker</a>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">
+            <img src="/images/arms.jpg" width="30" height="30" class="d-inline-block align-top" alt="bicep">
+            Fitness-Tracker
+        </a>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" id="searchInput" placeholder="Search Workouts">
+            <button class="btn btn-outline-light my-2 my-sm-0" id="submitSearch">Search</button>
+        </form>
     </nav>
     {{{body}}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>

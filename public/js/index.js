@@ -27,7 +27,7 @@ let workoutData = [];
 submitSearch.addEventListener("click", function (event) {
     event.preventDefault();
     let name = searchInput.value.trim()
-    name = name.split(" ")[0];
+    name = name.split(" ")[0].replace(/\//g, "");
     fetch("/search/" + name, {
         method: "GET"
     }).then(() => {

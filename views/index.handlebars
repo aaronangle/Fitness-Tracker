@@ -9,8 +9,11 @@
                 <h3 class="text-center bold">Your Workouts</h3>
                 <hr>
                 {{#each data}}
-                <button type="button" class="btn btn-outline-dark btn-lg btn-block  font-weight-bold viewWorkout"
-                    data-id={{_id}}>{{workout}}</button>
+                <div class="relative">
+
+                    <button type="button" class="btn btn-outline-dark btn-lg btn-block font-weight-bold viewWorkout"
+                        data-id={{_id}}>{{workout}} <span data-id={{_id}} class="delete">X</span></button>
+                </div>
                 {{/each}}
                 {{/if}}
             </div>

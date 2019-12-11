@@ -36,8 +36,13 @@ module.exports = function (app) {
     app.get("/search/:name", (req, res) => {
         Workout.findOne({ workout: req.params.name })
             .then(result => {
-                console.log(result)
                 res.render("viewWorkout", { result })
+            })
+    })
+    app.delete("/deleteWorkout", (req, res) => {
+        Workout.remove({ _id: req.body.id })
+            .then(result => {
+                res.json();
             })
     })
 };

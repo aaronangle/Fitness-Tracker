@@ -20,6 +20,7 @@ const weightNumber = document.querySelectorAll(".weightNumber")
 const workoutTitle = document.querySelectorAll(".workoutTitle")
 const submitSearch = document.querySelector("#submitSearch")
 const searchInput = document.querySelector("#searchInput")
+const deleteWorkout = document.querySelectorAll(".delete")
 let workoutData = [];
 
 submitSearch.addEventListener("click", function (event) {
@@ -51,6 +52,27 @@ if (addWorkout) {
             }).then((data) => {
                 console.log(data)
                 window.location.assign("/viewWorkout/" + id)
+            })
+        })
+    })
+    deleteWorkout.forEach(element => {
+        element.addEventListener("click", function (event) {
+            event.stopPropagation();
+            event.preventDefault();
+            const id = this.getAttribute("data-id")
+            const data = {
+                id: id
+            }
+            fetch("/deleteWorkout", {
+                method: "DELETE",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => {
+                console.log(response)
+                window.location.assign("/")
             })
         })
     })
@@ -151,7 +173,7 @@ if (visualize) {
                 let label3 = "";
                 if (lengthNumber) {
                     console.log("hit")
-                    label1 = "Time"
+                    label1 = "Length"
                     label2 = "Calories"
                     label3 = "Rest"
                 } else {

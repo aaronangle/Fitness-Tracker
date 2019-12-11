@@ -21,6 +21,7 @@ const workoutTitle = document.querySelectorAll(".workoutTitle")
 const submitSearch = document.querySelector("#submitSearch")
 const searchInput = document.querySelector("#searchInput")
 const deleteWorkout = document.querySelectorAll(".delete")
+const successAlert = document.querySelector("#successAlert")
 let workoutData = [];
 
 submitSearch.addEventListener("click", function (event) {
@@ -99,6 +100,10 @@ if (cardio) {
 
 }
 function pushData() {
+    successAlert.innerHTML = workoutName.value + " added succesfully!"
+    setTimeout(() => {
+        successAlert.innerHTML = "";
+    }, 1500);
     if (length) {
         workoutData.push({
             workoutName: workoutName.value,

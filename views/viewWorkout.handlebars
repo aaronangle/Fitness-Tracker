@@ -1,24 +1,44 @@
 <div class="container-fluid wrapper">
     <div class="row">
-        <div class="col-3"></div>
-        <h2>{{result.workout}}</h2>
 
+        <div class="col-0 col-lg-2"></div>
+        <div class="col-lg-3">
+            <h2>{{result.workout}}</h2>
+        </div>
+        <div class="col-0 col-lg-3"></div>
+        <div class="col-lg-4">
+            <button class="btn btn-primary visualize">Visualize the Data</button>
+        </div>
     </div>
-    <div class="row">
-        <div class="col-3"></div>
+    <div class="row center">
+        <div class="col-lg-2 col-0"></div>
+
         {{#each result.data}}
-        <div class="card mx-1" style="width: 18rem;">
-            <h5 class="card-header">{{workoutName}}</h5>
-            <div class="card-body">
-                <p class="card-text">Reps: <span id="repNumber">{{reps}}</span></p>
-                <p class="card-text">Sets: <span id="setNumber">{{sets}}</span></p>
-                <button class="btn btn-primary visualize" data-id={{_id}}>Visualize the Data</button>
+        <div class="col-lg-2 col-6">
+            <div class="card mx-1">
+                <h5 class="card-header workoutTitle">{{workoutName}}</h5>
+                <div class="card-body">
+                    {{#if reps}}
+                    <p class="card-text">Reps: <span class="repNumber">{{reps}}</span></p>
+                    <p class="card-text">Sets: <span class="setNumber">{{sets}}</span></p>
+                    <p class="card-text">Weight: <span class="weightNumber">{{weight}}</span></p>
+                    {{else}}
+                    <p class="card-text">Length: <span class="repNumber lengthNumber">{{length}} </span> minutes</p>
+                    <p class="card-text">Calories: <span class="setNumber">{{calories}}</span></p>
+                    <p class="card-text">Rest: <span class="weightNumber">{{rest}}</span> minutes</p>
+                    {{/if}}
+                </div>
             </div>
         </div>
         {{/each}}
-        <div class="col-3"></div>
+
+        <div class="col-lg-2 col-0"></div>
     </div>
     <div class="row">
-        <canvas id="myChart"></canvas>
+        <div class="col-lg-2 col-0"></div>
+        <div class="col-lg-8 col-12">
+            <canvas id="myChart"></canvas>
+        </div>
+        <div class="col-lg-2 col-0"></div>
     </div>
 </div>

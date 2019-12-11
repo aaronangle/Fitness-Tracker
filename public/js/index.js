@@ -7,12 +7,18 @@ const length = document.querySelector("#length");
 const calories = document.querySelector("#calories");
 const sets = document.querySelector("#sets");
 const reps = document.querySelector("#reps");
+const weight = document.querySelector("#weight");
+const rest = document.querySelector("#rest");
 const workout = document.querySelector("#workout")
 const add = document.querySelector("#add")
 const viewWorkout = document.querySelectorAll(".viewWorkout")
 const visualize = document.querySelectorAll(".visualize")
-const repNumber = document.querySelector("#repNumber")
-const setNumber = document.querySelector("#setNumber")
+const repNumber = document.querySelectorAll(".repNumber")
+const setNumber = document.querySelectorAll(".setNumber")
+const lengthNumber = document.querySelector(".lengthNumber")
+const weightNumber = document.querySelectorAll(".weightNumber")
+const workoutTitle = document.querySelectorAll(".workoutTitle")
+let workoutData = [];
 
 if (addWorkout) {
     addWorkout.addEventListener("click", function (event) {
@@ -58,33 +64,42 @@ if (cardio) {
     })
 
 }
-
+function pushData() {
+    if (length) {
+        workoutData.push({
+            workoutName: workoutName.value,
+            length: length.value,
+            calories: calories.value,
+            rest: rest.value
+        })
+        length.value = "";
+        calories.value = "";
+        rest.value = "";
+    } else {
+        workoutData.push({
+            workoutName: workoutName.value,
+            reps: reps.value,
+            sets: sets.value,
+            weight: weight.value
+        })
+        reps.value = "";
+        sets.value = "";
+        weight.value = "";
+    }
+    workoutName.value = ""
+}
 if (submit) {
-    const workoutData = []
+
     add.addEventListener("click", function (event) {
         event.preventDefault();
-        if (length) {
-            workoutData.push({
-                workoutName: workoutName.value,
-                length: length.value,
-                calories: calories.value
-            })
-            length.value = "";
-            calories.value = "";
-        } else {
-            workoutData.push({
-                workoutName: workoutName.value,
-                reps: reps.value,
-                sets: sets.value
-            })
-            reps.value = "";
-            sets.value = "";
-        }
-        workoutName.value = "";
+        pushData();
     });
 
     submit.addEventListener("click", function (event) {
         event.preventDefault();
+        if (workoutName.value) {
+            pushData();
+        }
         let data;
         if (length) {
             data = {
@@ -108,6 +123,7 @@ if (submit) {
             body: JSON.stringify(data)
         }).then(res => {
             console.log(res)
+            workoutData.length = 0;
             window.location.assign("/")
         })
     });
@@ -118,28 +134,71 @@ if (visualize) {
         element.addEventListener("click", function (event) {
             event.preventDefault();
             if (repNumber) {
-                const title = this.parentNode.parentNode.childNodes[1].innerHTML;
-                const rep = this.parentNode.childNodes[1].childNodes[1].innerHTML;
-                const set = this.parentNode.childNodes[3].childNodes[1].innerHTML;
+                let label1 = "";
+                let label2 = "";
+                let label3 = "";
+                if (lengthNumber) {
+                    console.log("hit")
+                    label1 = "Time"
+                    label2 = "Calories"
+                    label3 = "Rest"
+                } else {
+                    label1 = "Reps"
+                    label2 = "Sets"
+                    label3 = "Weight"
+                }
+                const repData = [];
+                const setData = [];
+                const workoutNames = [];
+                const weightData = [];
+                workoutTitle.forEach(element => {
+                    workoutNames.push(element.innerHTML)
+                })
+                repNumber.forEach(element => {
+                    repData.push(element.innerHTML)
+                })
+                setNumber.forEach(element => {
+                    setData.push(element.innerHTML)
+                })
+                weightNumber.forEach(element => {
+                    weightData.push(element.innerHTML)
+                })
+
                 var ctx = document.getElementById('myChart').getContext('2d');
                 var chart = new Chart(ctx, {
                     // The type of chart we want to create
-                    type: 'line',
+                    type: "bar",
 
                     // The data for our dataset
                     data: {
-                        labels: ["Reps"],
+                        labels: workoutNames,
 
                         datasets: [{
-                            label: title,
-                            // backgroundColor: 'rgb(255, 99, 132)',
-                            borderColor: 'rgb(255, 99, 132)',
-                            data: [rep, set]
+                            label: label1,
+                            data: repData,
+                            backgroundColor: 'rgb(255, 99, 132)'
+                        }, {
+                            label: label2,
+                            data: setData,
+                            backgroundColor: 'yellow'
+                        }, {
+                            label: label3,
+                            data: weightData,
+                            backgroundColor: "blue"
                         }]
                     },
 
                     // Configuration options go here
-                    options: {},
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        },
+
+                    }
 
                 });
             }

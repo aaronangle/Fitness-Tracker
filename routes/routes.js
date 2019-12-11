@@ -2,17 +2,13 @@ const Workout = require("../models/workoutModel")
 
 module.exports = function (app) {
     app.get("/", (req, res) => {
-        Workout.find({}).then(data => {
+        Workout.find({}).sort({ _id: -1 }).then(data => {
             res.render("index", { data })
         })
     })
 
     app.get("/workout", (req, res) => {
         res.render("workout")
-    })
-
-    app.post("/newWorkout", (req, res) => {
-
     })
 
     app.get("/resistancePage", (req, res) => {
@@ -26,7 +22,7 @@ module.exports = function (app) {
     app.post("/postWorkout", (req, res) => {
         Workout.create(req.body)
             .then(() => {
-                res.render("/")
+                res.json()
             })
     })
 

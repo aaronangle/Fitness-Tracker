@@ -4,8 +4,8 @@
     <br>
     <div class="row center">
         <div class="col-6 col-lg-3">
+            {{#if data}}
             <div class="sidenav">
-                {{#if data}}
                 <h3 class="text-center bold">Your Workouts</h3>
                 <hr>
                 {{#each data}}
@@ -16,8 +16,8 @@
                         data-id={{_id}}>{{workout}} <span data-id={{_id}} class="delete">X</span></button>
                 </div>
                 {{/each}}
-                {{/if}}
             </div>
+            {{/if}}
         </div>
         <div class="col-6 col-lg-6">
             <div class="card text-center">

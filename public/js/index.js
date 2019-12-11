@@ -52,7 +52,6 @@ if (addWorkout) {
             fetch("/viewWorkout/" + id, {
                 method: "GET"
             }).then((data) => {
-                console.log(data)
                 window.location.assign("/viewWorkout/" + id)
             })
         })
@@ -73,7 +72,6 @@ if (addWorkout) {
                 },
                 body: JSON.stringify(data)
             }).then(response => {
-                console.log(response)
                 window.location.assign("/")
             })
         })
@@ -163,7 +161,6 @@ if (submit) {
             },
             body: JSON.stringify(data)
         }).then(res => {
-            console.log(res)
             workoutData.length = 0;
             window.location.assign("/")
         })
@@ -179,7 +176,6 @@ if (visualize) {
                 let label2 = "";
                 let label3 = "";
                 if (lengthNumber) {
-                    console.log("hit")
                     label1 = "Length"
                     label2 = "Calories"
                     label3 = "Rest"

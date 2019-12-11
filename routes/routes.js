@@ -40,7 +40,7 @@ module.exports = function (app) {
             })
     })
     app.delete("/deleteWorkout", (req, res) => {
-        Workout.remove({ _id: req.body.id })
+        Workout.deleteOne({ _id: req.body.id })
             .then(result => {
                 res.json();
             })

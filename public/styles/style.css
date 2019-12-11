@@ -33,12 +33,11 @@ html, body{
       position: absolute;
       right: 10px;
       color: rgb(41, 18, 18);
-      border: solid 1px #343a40;
       padding: 1px;
       border-radius: 5px;;
   }
   .delete:hover{
       cursor: pointer;
       color: white;
-      border-color: white;
+      border: solid 1px white;
   }
